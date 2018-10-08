@@ -1,0 +1,62 @@
+<template>
+	<div class="optimize">
+		优化列表
+		<ul>
+			<Operate v-for="(item,index) in listOriginal" :item="item" :index="index" :key="index"></Operate>
+		</ul>
+	</div>
+</template>
+
+<script>
+    import list from "./list.js"
+    export default {
+        name: 'optimize',
+        data() {
+            return {
+                listOriginal: JSON.parse(JSON.stringify(list)), //仅做初次渲染使用
+                listOperate: JSON.parse(JSON.stringify(list)) //组件回调后操作，用来做渲染之外的业务处理
+            }
+        },
+        components: {
+            Operate: function(resolve) {
+                require(['@/components/Operate.vue'], resolve)
+            }
+        }
+    }
+</script>
+
+
+<template>
+	<li class="operate">
+		<img :src="item.img" />
+		<div class="left_bottom">
+			<p>{{item.name}}</p>
+			<p><span v-if="item.num > 0">{{item.num}}整份</span><span v-if="item.num > 0">{{item.num}}半份</span></p>
+			<span class="add btn" @click="add(index)">+</span>
+			<span class="num">{{item.num}}</span>
+			<span class="reduce btn" @click="reduce(index)">-</span>
+		</div>
+	</li>
+</template>
+
+<script>
+    export default {
+        name: 'operate',
+        data() {
+            return {}
+        },
+        props: ["item", "index"],
+        methods: {
+            add(index) {
+                let t = this;
+                t.item.num++;
+                //t.$emit(...);//回调操作父组件listOperate，或者处理其他业务均可
+            },
+            reduce(index) {
+                let t = this;
+                t.item.num > 0 ? t.item.num-- : 0;
+                //t.$emit(...);//回调操作父组件listOperate，或者处理其他业务均可
+            }
+        }
+    }
+</script>

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="warn"></div>
+
+
+
+
+
+
+
+
+
+
+    <script>
+        let warn = {
+            1: {
+                warnTypeText: "hello1",
+                warnConditionText: "world"
+            },
+            2: {
+                warnTypeText: "hello2",
+                warnConditionText: "world"
+            },
+            3: {
+                warnTypeText: "hello2",
+                warnConditionText: "world"
+            },
+            4: {
+                warnTypeText: "hello2",
+                warnConditionText: "world"
+            }
+        }
+        listWarnConf.forEach(item => {
+            item.warnTypeText = warnConfig[item.warnType].warnTypeText;
+            item.warnConditionText = warnConfig[item.warnType].warnConditionText.replace('replaceText', item.warnCondition);
+        })
+    </script>
+    <!-- 两个script写的东西相同 但是实现方式不同 下面代码如果改动地方多 上面代码重复性高 -->
+    <script>
+        let listWarnConf = [{
+            warnType: 1,
+            warnCondition: 220,
+        }, {
+            warnType: 2,
+            warnCondition: 36,
+        }, {
+            warnType: 3,
+            warnCondition: 45,
+        }, {
+            warnType: 4,
+            warnCondition: 110,
+        }, {
+            warnType: 5,
+            warnCondition: 380,
+        }]
+        listWarnConf.forEach(item => {
+            switch (item.warnType) {
+                case 1:
+                    item.warnTypeText = '超压';
+                    item.warnConditionText = `电压高于${item.warnCondition}V`
+                    break;
+                case 2:
+                    item.warnTypeText = '欠压';
+                    item.warnConditionText = `电压低于${item.warnCondition}V`
+                    break
+                case 3:
+                    item.warnTypeText = '超载';
+                    item.warnConditionText = `电流高于${item.warnCondition}A`
+                    break
+                case 4:
+                    item.warnTypeText = '电压不平衡';
+                    item.warnConditionText = `电压不平衡高于${item.warnCondition}%`
+                    break
+                case 5:
+                    item.warnTypeText = '电流不平衡';
+                    item.warnConditionText = `电流不平衡${item.warnCondition}%`
+                    break
+            }
+        })
+    </script>
+</body>
+
+</html>
