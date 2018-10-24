@@ -12,6 +12,7 @@
             height: 400px;
             margin: 0;
             font-family: "微软雅黑";
+            margin: 0 auto;
         }
     </style>
     <script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=DPUMdehfraqYSfC9vXuABFZ03CWaw2on"></script>
@@ -36,7 +37,7 @@
     //添加谷歌marker和label
     var markergg = new BMap.Marker(ggPoint);
     bm.addOverlay(markergg); //添加谷歌marker
-    var labelgg = new BMap.Label("我们在这里", {
+    var labelgg = new BMap.Label("here！", {
         offset: new BMap.Size(20, -10)
     });
     markergg.setLabel(labelgg); //添加谷歌label
